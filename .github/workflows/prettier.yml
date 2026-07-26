@@ -3,7 +3,7 @@ name: Run Prettier
 on:
     push:
         branches:
-            - enhanced
+            - master
         paths-ignore:
             - 'precompiled/**'
     workflow_dispatch:

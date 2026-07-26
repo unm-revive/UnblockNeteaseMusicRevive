@@ -3,7 +3,7 @@ name: Build precompiled JavaScript file
 on:
     push:
         branches:
-            - enhanced
+            - master
         paths:
             - '*.js'
             - 'src/**.js'

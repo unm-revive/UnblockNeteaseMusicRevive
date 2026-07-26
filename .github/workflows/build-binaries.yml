@@ -3,7 +3,7 @@ name: Build binaries for UnblockNeteaseMusic
 on:
     push:
         branches:
-            - 'enhanced'
+            - 'master'
         paths-ignore:
             - '**.md'
             - 'precompiled/*.js'
