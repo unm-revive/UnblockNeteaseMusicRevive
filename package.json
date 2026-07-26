@@ -1,5 +1,5 @@
 {
-	"name": "@unblockneteasemusic/server",
+	"name": "@unblockneteasemusic-revive/server",
 	"version": "0.28.0",
 	"description": "Revive unavailable songs for Netease Cloud Music",
 	"main": "src/provider/match.js",
@@ -31,9 +31,9 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/UnblockNeteaseMusic/server.git"
+		"url": "https://github.com/unm-revive/UnblockNeteaseMusicRevive.git"
 	},
-	"author": "nondanee, 1715173329, pan93412",
+	"author": "nondanee, 1715173329, pan93412, and unm-revive contributors",
 	"license": "LGPL-3.0-only",
 	"dependencies": {
 		"node-windows": "^1.0.0-beta.8",
@@ -44,7 +44,6 @@
 		"@swc/core": "^1.15.11",
 		"@types/node": "^25.2.2",
 		"@types/pino": "7.0.5",
-		"@yarnpkg/sdks": "^3.2.3",
 		"browserslist": "^4.28.1",
 		"core-js": "^3.48.0",
 		"cross-env": "^10.1.0",
@@ -66,5 +65,5 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"packageManager": "yarn@3.8.7"
+	"packageManager": "pnpm@10.28.1"
 }

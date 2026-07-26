@@ -2,11 +2,11 @@
 
 <img src="https://user-images.githubusercontent.com/26399680/47980314-0e3f1700-e102-11e8-8857-e3436ecc8beb.png" alt="logo" width="140" height="140" align="right">
 
-# UnblockNeteaseMusic
+# UnblockNeteaseMusic Revive
 
 解锁网易云音乐客户端变灰歌曲
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUnblockNeteaseMusic%2Fserver.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FUnblockNeteaseMusic%2Fserver?ref=badge_shield)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Funm-revive%2FUnblockNeteaseMusicRevive.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Funm-revive%2FUnblockNeteaseMusicRevive?ref=badge_shield)
 
 ## 特性
 
@@ -28,14 +28,14 @@
 #### 安装成依赖
 
 ```bash
-npm install @unblockneteasemusic/server
-yarn add @unblockneteasemusic/server # for Yarn users
+npm install @unblockneteasemusic-revive/server
+yarn add @unblockneteasemusic-revive/server # for Yarn users
 ```
 
 #### 用 NPX 运行
 
 ```bash
-npx -p @unblockneteasemusic/server unblockneteasemusic
+npx -p @unblockneteasemusic-revive/server unblockneteasemusic
 ```
 
 ### 注册成 Windows 服务
@@ -58,46 +58,46 @@ http 代理使用 `127.0.0.1`，端口默认使用 `8080`。
 
 #### Docker Hub
 
-见 [pan93412/unblock-netease-music-enhanced](https://hub.docker.com/r/pan93412/unblock-netease-music-enhanced)
-。`latest` 是从 `enhanced` 组建的最新版本；`release` 是最新 tag 的版本。
+镜像发布在 [unm-revive/unblock-netease-music-revive](https://hub.docker.com/r/unm-revive/unblock-netease-music-revive)。
+`latest` 是最新版本。
 
-直接运行 `pan93412/unblock-netease-music-enhanced` 的命令如下：
+直接运行命令如下：
 
 ```bash
-docker run pan93412/unblock-netease-music-enhanced
+docker run unm-revive/unblock-netease-music-revive
 ```
 
-若要更新 UnblockNeteaseMusic，请运行以下命令后重新 `run`：
+若要更新，请运行以下命令后重新 `run`：
 
 ```
-docker pull pan93412/unblock-netease-music-enhanced
+docker pull unm-revive/unblock-netease-music-revive
 ```
 
 若要指定环境变量，您可以往 `docker run` 传入 `-e`，就像这样：
 
 ```bash
-docker run -e JSON_LOG=true -e LOG_LEVEL=debug pan93412/unblock-netease-music-enhanced
+docker run -e JSON_LOG=true -e LOG_LEVEL=debug unm-revive/unblock-netease-music-revive
 ```
 
 若要传入配置参数，只要在 `docker run` 的 image 之后传入参数即可：
 
 ```bash
-docker run pan93412/unblock-netease-music-enhanced -o kuwo -p 1234
+docker run unm-revive/unblock-netease-music-revive -o kuwo -p 1234
 ```
 
 #### 自行编译
 
 ```bash
-git clone https://github.com/UnblockNeteaseMusic/server.git UnblockNeteaseMusic
-cd UnblockNeteaseMusic
+git clone https://github.com/unm-revive/UnblockNeteaseMusicRevive.git UnblockNeteaseMusicRevive
+cd UnblockNeteaseMusicRevive
 docker-compose up
 ```
 
 ### 直接使用 Repo 最新版本
 
 ```bash
-git clone https://github.com/UnblockNeteaseMusic/server.git UnblockNeteaseMusic
-cd UnblockNeteaseMusic
+git clone https://github.com/unm-revive/UnblockNeteaseMusicRevive.git UnblockNeteaseMusicRevive
+cd UnblockNeteaseMusicRevive
 node app.js # 建议使用 screen / tmux 把 app.js 挂后台
 ```
 
@@ -132,7 +132,7 @@ DEVELOPMENT=true yarn node app.js
 
 ### OpenWrt LuCI 插件
 
-请移步至 [luci-app-unblockneteasemusic](https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic)。
+请移步至 [luci-app-unblockneteasemusic](https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic)。（原项目链接）
 
 ### 配置参数
 
@@ -276,7 +276,7 @@ PAC 自动代理脚本地址 `http://<Server Name:PORT>/proxy.pac`
 作为依赖库使用
 
 ```javascript
-const match = require('@unblockneteasemusic/server');
+const match = require('@unblockneteasemusic-revive/server');
 
 /**
  * Set proxy or hosts if needed
@@ -295,7 +295,7 @@ match(418602084, ['qq', 'kuwo', 'migu']).then(console.log);
 
 ### 設定 HTTPS 憑證
 
-新版的 NeteaseMusic 需要 HTTPS 才能使用。证书的设置教学可参阅[《安裝 UNM 的 HTTPS 憑證》](https://github.com/UnblockNeteaseMusic/server/discussions/426)一文。
+新版的 NeteaseMusic 需要 HTTPS 才能使用。证书的设置教学可参阅[《安裝 UNM 的 HTTPS 憑證》](https://github.com/unm-revive/UnblockNeteaseMusicRevive/discussions/426)一文。
 
 ## 效果
 
@@ -363,6 +363,6 @@ match(418602084, ['qq', 'kuwo', 'migu']).then(console.log);
 
 (Original project) [nondanee/UnblockNeteaseMusic](https://github.com/nondanee/UnblockNeteaseMusic): [MIT](https://github.com/nondanee/UnblockNeteaseMusic/blob/master/LICENSE)
 
-(This project) [UnblockNeteaseMusic/server](https://github.com/UnblockNeteaseMusic/server): [LGPL-3.0-only](https://spdx.org/licenses/LGPL-3.0-only.html)
+(This project) [UnblockNeteaseMusicRevive](https://github.com/unm-revive/UnblockNeteaseMusicRevive): [LGPL-3.0-only](https://spdx.org/licenses/LGPL-3.0-only.html)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FUnblockNeteaseMusic%2Fserver.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FUnblockNeteaseMusic%2Fserver?ref=badge_large)
