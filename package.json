@@ -56,11 +56,13 @@
 		"webpack": "^5.105.0",
 		"webpack-cli": "^6.0.1"
 	},
-	"resolutions": {
-		"cacheable-request": "^10.2.9",
-		"minimatch": "^3.0.8",
-		"minimist": "^1.2.8",
-		"semver": "^7.5.4"
+	"pnpm": {
+		"overrides": {
+			"cacheable-request": "^10.2.9",
+			"minimatch": "^3.0.8",
+			"minimist": "^1.2.8",
+			"semver": "^7.5.4"
+		}
 	},
 	"publishConfig": {
 		"access": "public"

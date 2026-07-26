@@ -9,7 +9,7 @@ on:
             - 'src/**.js'
             - '.github/workflows/*.yml'
             - 'package.json'
-            - 'yarn.lock'
+            - 'pnpm-lock.yaml'
     workflow_dispatch:
 
 jobs:
@@ -27,17 +27,21 @@ jobs:
             - name: Cleanup precompiled
               run: rm -rf precompiled/*
 
+            - uses: pnpm/action-setup@v6
+              with:
+                  version: 10
+
             - name: Use Node.js 20
               uses: actions/setup-node@v6
               with:
                   node-version: 20
-                  cache: yarn
+                  cache: pnpm
 
             - name: Install dependencies
-              run: yarn
+              run: pnpm install --frozen-lockfile
 
             - name: Build the precompiled package
-              run: yarn build
+              run: pnpm build
 
             - name: Create Pull Request
               uses: peter-evans/create-pull-request@v8

@@ -51,9 +51,6 @@ typings/
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
-
 # dotenv environment variables file
 .env
 
@@ -81,11 +78,5 @@ daemon/
 # Mac
 .DS_Store
 
-# Yarn 2 exclusions
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+# pnpm store
+.pnpm-store/

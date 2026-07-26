@@ -9,23 +9,23 @@ Published as `@unblockneteasemusic-revive/server` on npm.
 ## Quick commands
 
 ```bash
-yarn                    # install (Yarn Berry PnP — do NOT use npm)
-yarn test               # run all Jest tests
-yarn test -- --testPathPattern=cache  # single test file
-yarn build              # webpack → precompiled/app.js + precompiled/bridge.js
-yarn prettier -w .      # format everything (tabWidth:4, useTabs, singleQuote)
-yarn start:dev          # run from source with debug logs
-DEVELOPMENT=true yarn node app.js   # run from source (no build needed)
+pnpm install            # install dependencies
+pnpm test               # run all Jest tests
+pnpm test -- --testPathPattern=cache  # single test file
+pnpm build              # webpack → precompiled/app.js + precompiled/bridge.js
+pnpm prettier -w .      # format everything (tabWidth:4, useTabs, singleQuote)
+pnpm start:dev          # run from source with debug logs
+DEVELOPMENT=true node app.js   # run from source (no build needed)
 node app.js             # run precompiled bundle
 ```
 
-**Format before committing.** Prettier auto-fix PRs run in CI (branch `enhanced`).
+**Format before committing.** Prettier CI auto-fixes formatting on the `master` branch.
 
 ## Package manager
 
-- **Yarn 3.8.7** with **PnP** (`nodeLinker: pnp`). Never use `npm install`.
-- Lockfile: `yarn.lock`.
-- `.yarnrc.yml` configures the yarn path and releases.
+- **pnpm 10** (`packageManager` field in `package.json`).
+- Lockfile: `pnpm-lock.yaml` (commit it).
+- Config: `.npmrc`.
 
 ## Key structure
 
@@ -69,10 +69,10 @@ Override with `-o` flag or `global.source` / `FOLLOW_SOURCE_ORDER=true` env.
 
 ## Development mode
 
-`DEVELOPMENT=true` makes the bootstrap `require()` source files directly instead of the webpack bundle. Useful for iteration without running `yarn build`.
+`DEVELOPMENT=true` makes the bootstrap `require()` source files directly instead of the webpack bundle. Useful for iteration without running `pnpm build`.
 
 ```bash
-DEVELOPMENT=true yarn node app.js -o bilibili kugou
+DEVELOPMENT=true node app.js -o bilibili kugou
 ```
 
 ## Testing
@@ -83,8 +83,8 @@ DEVELOPMENT=true yarn node app.js -o bilibili kugou
 - Tests requiring network access (e.g. `request.test.js`) use real URLs (example.com).
 
 ```bash
-yarn test                              # all tests
-yarn test -- --testPathPattern=request  # single file
+pnpm test                              # all tests
+pnpm test -- --testPathPattern=request  # single file
 ```
 
 ## Build & bundle
@@ -92,7 +92,7 @@ yarn test -- --testPathPattern=request  # single file
 - **Webpack 5** + **swc-loader** + **TerserPlugin** (swc minify, target Node 12).
 - Output: `precompiled/app.js` and `precompiled/bridge.js`.
 - CI auto-builds `precompiled/` and opens a PR on the `enhanced` branch.
-- `yarn build` to re-bundle manually.
+- `pnpm build` to re-bundle manually.
 
 ## Important env vars
 
@@ -113,12 +113,12 @@ Run via `.env` file (auto-loaded) or inline: `LOG_LEVEL=debug node app.js`
 
 ## CI quirks
 
-- **Default branch is `enhanced`** (not `main`/`master`).
+- **Default branch is `master`**.
 - Prettier CI auto-fixes formatting and opens a PR labelled `ci:style`.
 - Build CI auto-creates PRs for `precompiled/` updates.
 - Docker images published as `unm-revive/unblock-netease-music-revive` with multi-arch support.
 - Binary releases via `pkg` for linux-arm64, linux-x64, win-arm64, win-x64.
-- Publish triggers: `yarn npm publish` on release tags.
+- Publish triggers: `pnpm publish` when `package.json` version changes on `master`.
 
 ## Docker
 
@@ -131,11 +131,11 @@ docker run -e LOG_LEVEL=debug unm-revive/unblock-netease-music-revive
 ## Architecture notes
 
 - **No framework** for the CLI; `src/cli.js` is a hand-rolled arg parser.
-- **No TypeScript compilation** in the build step. `.swcrc` transpiles ES2020+ → CommonJS for Node 12. TypeScript is installed only for editor intellisense (via Yarn SDK).
+- **No TypeScript compilation** in the build step. `.swcrc` transpiles ES2020+ → CommonJS for Node 12. TypeScript is installed only for editor intellisense (via `@types/node` etc.).
 - **Provider interface**: Each provider exports `check(info)` that returns `{ url, br, size, md5 }` or throws. Providers can use `insure()` as a cnrelay bridge for CN-restricted APIs.
 - **Cache**: In-memory `Map` with 30 min TTL. Cleanup runs every 15 min. Use `NO_CACHE=true` to disable.
 - **Certificate**: MITM TLS requires a CA cert. `generate-cert.sh` produces it. The repo ships default `server.crt`/`server.key`.
 
 ## VSCode
 
-Settings in `.vscode/settings.json` — uses Yarn SDK for TS/Prettier. Recommended extensions: `arcanis.vscode-zipfs`, `esbenp.prettier-vscode`.
+Settings in `.vscode/settings.json` — uses Prettier and TypeScript from `node_modules`. Recommended extensions: `esbenp.prettier-vscode`.

@@ -29,7 +29,7 @@
 
 ```bash
 npm install @unblockneteasemusic-revive/server
-yarn add @unblockneteasemusic-revive/server # for Yarn users
+pnpm add @unblockneteasemusic-revive/server
 ```
 
 #### 用 NPX 运行
@@ -110,16 +110,16 @@ git pull
 #### 编译最新的 package
 
 ```bash
-yarn
-yarn build
+pnpm install
+pnpm build
 node app.js # 即可使用 repo 的最新开发内容
 ```
 
 #### 采用（而不编译）最新的 package
 
 ```bash
-yarn
-DEVELOPMENT=true yarn node app.js
+pnpm install
+DEVELOPMENT=true node app.js
 ```
 
 ### BetterNCM 一键安装器
@@ -192,7 +192,7 @@ node app.js -o bilibili ytdlp
 | ENABLE_HTTPDNS        | bool | 激活故障的 Netease HTTPDNS 查询（不建议）                                                               | `ENABLE_HTTPDNS=true`                                            |
 | BLOCK_ADS             | bool | 屏蔽应用内部分广告                                                                                      | `BLOCK_ADS=true`                                                 |
 | DISABLE_UPGRADE_CHECK | bool | 禁用更新检测                                                                                            | `DISABLE_UPGRADE_CHECK=true`                                     |
-| DEVELOPMENT           | bool | 激活开发模式。需要自己用 `yarn` 安装依赖 (dependencies)                                                 | `DEVELOPMENT=true`                                               |
+| DEVELOPMENT           | bool | 激活开发模式。需要自己用 `pnpm install` 安装依赖                                                    | `DEVELOPMENT=true`                                               |
 | FOLLOW_SOURCE_ORDER   | bool | 严格按照配置音源的顺序进行查询                                                                          | `FOLLOW_SOURCE_ORDER=true`                                       |
 | JSON_LOG              | bool | 输出机器可读的 JSON 记录格式                                                                            | `JSON_LOG=true`                                                  |
 | NO_CACHE              | bool | 停用 cache                                                                                              | `NO_CACHE=true`                                                  |
